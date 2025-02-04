@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  django_app:
+    build: ./main
+    container_name: django_app
+    image: django_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - static:/app/static
+
+volumes:
+  static:
