@@ -10,7 +10,7 @@ En la carpeta main se podrá encontrar un archivo Dockerfile, el cual tiene las 
 
 ## Pipeline CI/CD
 Para la pipeline CI/CD, se escribió un script en un archivo Jenkinsfile. Para efectos de esta prueba, consideraremos que la maquina de pruebas es la misma maquina en la que se encuentra instalado Jenkins, mientras que la maquina de producción será una maquina EC2 de AWS. A continuación se explica brevemente las etapas:
-* Etapa 0: Por defecto, la iniciar la pipeline Jenkins clona el repositorio en el WorkSpace, por lo que no es necesario incluir esto en el Jenkinsfile
+* Etapa 0 (Checkout): Al detectar un commit, Jenkins ejecuta la pipeline, y por defecto, clona el repositorio en el WorkSpace, por lo que no es necesario incluir esto en el Jenkinsfile
 * Etapa 1 (Preparar ambiente): Se prepara el ambiente para la ejecución de pruebas, para lo cual es necesario descargar la versión mas reciente de Dastardly, se copia en el WorkSpace el archivo de ambiente que se encuentra almacenado en boveda, y se ejecuta el archivo Docker - Compose para montar la imagen y correr la app en el puerto 8000.
 * Etapa 2 (Análisis SAST): Utilizando una instalación de SonarQube previamente configurada, se ejecuta el análisis SAST para realizar pruebas de código estático
 * Etapa 3 (Análisis SCA): Utilizando una instalación de OWASP Dependency Check previamente configurada, se ejecuta el análisis SCA para comprobar que las dependencias no cuenten con vulnerabilidades
