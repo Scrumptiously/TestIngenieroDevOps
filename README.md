@@ -5,7 +5,7 @@ A continuación se explicará el sistema desarrollado para la prueba de implemen
 ## La aplicación
 La aplicación utilizada para la demostración se desarrolló bajo el framework web Django, y solo cuenta con una vista, en la cúal se consume el endpoint especificado en las instrucciones y luego, a través de una respuesta HTTP, muestra los datos recuperados. También cuenta con una prueba unitaria que comprueba la integración de la API con la aplicación.
 
-## IAC
+## Contenedores
 En la carpeta main se podrá encontrar un archivo Dockerfile, el cual tiene las instrucciones para montar todo el ambiente Python necesario para correr la aplicación, y en la carpeta raíz se encuentra un archivo Docker - Compose, el cúal tiene automatizada el montaje de los contenedores y los volumenes necesarios para el funcionamiento de la app
 
 ## Pipeline CI/CD
