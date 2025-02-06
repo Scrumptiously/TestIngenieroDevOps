@@ -56,7 +56,10 @@ pipeline {
             }
         }
         
-        stage('Despliegue') { // Despliegue en EC2 Producción
+        stage('Despliegue') { // Despliegue en EC2 Producción, condicionado a cuando los cambios son realizados en la rama main
+            when {
+                branch 'main'
+            }
             steps {
                 sshagent(credentials: ['SSHEC2PROD']) {
                     sh '''
