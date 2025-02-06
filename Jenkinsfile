@@ -63,17 +63,17 @@ pipeline {
             steps {
                 sshagent(credentials: ['SSHEC2PROD']) {
                     sh '''
-                        ssh -o StrictHostKeyChecking=no ${PROD_HOST}'
-                            docker stop django_app || true &&
-                            docker rm django_app || true &&
-                            docker rmi django_app || true &&
-                            rm -rf /home/ubuntu/TestIngenieroDevOps || true &&
+                        ssh -o StrictHostKeyChecking=no ${HOST_PROD}'
+                            docker stop django_app &&
+                            docker rm django_app &&
+                            docker rmi django_app &&
+                            rm -rf /home/ubuntu/TestIngenieroDevOps &&
                             git clone git@github.com:Scrumptiously/TestIngenieroDevOps.git &&
                             cd /home/ubuntu/TestIngenieroDevOps &&
                             docker compose up --build -d
-                            docker compose exec django_gunicorn python3 manage.py makemigrations MainApp --no-input
-                            docker compose exec django_gunicorn python3 manage.py migrate --no-input
-                            docker compose exec django_gunicorn python3 manage.py collectstatic --no-input
+                            docker compose exec django_app python3 manage.py makemigrations MainApp --no-input
+                            docker compose exec django_app python3 manage.py migrate --no-input
+                            docker compose exec django_app python3 manage.py collectstatic --no-input
                         '
                     '''
                 }
